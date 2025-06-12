@@ -19,8 +19,7 @@ services:
       PHP_MAX_EXECUTION_TIME: "600"
       PHP_UPLOAD_MAX_FILESIZE: "64M"
       PHP_POST_MAX_SIZE: "64M"
-    env_file:
-      - stack.env
+    env_file: stack.env
     depends_on:
       db:
         condition: service_healthy
@@ -64,8 +63,7 @@ services:
   ui:
     image: jhumanj/opnform-client:latest
     container_name: opnform-client
-    env_file:
-      - stack.env
+    env_file: stack.env
     healthcheck:
       test: ["CMD-SHELL", "wget --spider -q http://localhost:3000/login || exit 1"]
       interval: 30s
@@ -103,7 +101,7 @@ services:
     ports:
       - 7780:80
     environment:
-      - NGINX_MAX_BODY_SIZE=64m
+      - NGINX_MAX_BODY_SIZE=512m
     depends_on:
       api:
         condition: service_started
