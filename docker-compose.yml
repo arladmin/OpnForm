@@ -4,7 +4,7 @@ services:
     image: jhumanj/opnform-api:latest
     container_name: opnform-api
     volumes: &api-environment-volumes
-      - opnform_storage:/usr/share/nginx/html/storage:rw
+      - ./opnform_storage:/usr/share/nginx/html/storage:rw
     environment: &api-env
       APP_ENV: production
       # Database settings
@@ -93,7 +93,7 @@ services:
       interval: 30s
       timeout: 5s
     volumes:
-      - postgres-data:/var/lib/postgresql/data
+      - ./postgres-data:/var/lib/postgresql/data
 
   ingress:
     image: nginx:1
@@ -116,6 +116,6 @@ services:
       retries: 3
       start_period: 10s
 
-volumes:
-  postgres-data:
-  opnform_storage:
+#volumes:
+#  postgres-data:
+#  opnform_storage:
