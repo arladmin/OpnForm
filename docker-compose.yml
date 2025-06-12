@@ -119,3 +119,8 @@ services:
 #volumes:
 #  postgres-data:
 #  opnform_storage:
+
+networks:
+  default:
+    name: main
+    external: true
